@@ -1,0 +1,99 @@
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    
+
+    <script>
+function getRandomInt(bound) {
+  return Math.floor(Math.random() * bound);
+}
+
+function getDistortedPara(originalPara){
+  const spaceChangeThreshoold=6;
+
+const totalSpaces = originalPara.split(" ").length - 1;
+
+const withoutSpacesPara = originalPara.replaceAll(" ", "");
+const spacesToChange = totalSpaces/2
+
+
+// console.log("withoutSpacesPara: ", withoutSpacesPara);
+
+const editedPara = originalPara;
+const words = withoutSpacesPara.split("");
+for (let i = 0; i < totalSpaces; i++) {
+  const randomIndex = getRandomInt(withoutSpacesPara.length);
+  const selectedChar = withoutSpacesPara.charAt(randomIndex);
+  words[randomIndex] = ` ${selectedChar}`  
+}
+// console.log("Words: ",words);
+
+const distortedPara = words.join('');
+return distortedPara
+}
+
+
+// const para = "If you knew, you couldn't fail... how big would you think?";
+const originalPara = "The biggest risk is not taking any risk… In a world that’s changing really quickly, the only strategy that is guaranteed to fail is not taking risks.";
+console.log("original Paragraph: ",originalPara);
+const distortedPara = getDistortedPara(originalPara);
+console.log("Distorted: ",distortedPara);
+
+
+console.log("totalPoints: ",totalPoints);
+  const submission ='The biggest risk is not takingany risk… In a world t hat’s changing really quickly, the only strategy that is gu ar anteed to failisn ott akingr isk s.'
+  const ogWords = originalPara.split(' ');
+
+  startingPoints = ogWords.length;
+  var totalPoints = startingPoints
+  // console.log("ogWords: ",ogWords);
+  const sbWords = submission.split(' ');
+  // console.log("sbWords: ",sbWords);
+  if (ogWords.length != sbWords.length){
+    // console.log("Point -1");
+    totalPoints = totalPoints -1;
+  }
+  for (let wordIndex = 0; wordIndex < ogWords.length; wordIndex++) {
+    const ogWord = ogWords[wordIndex];
+    if(wordIndex<sbWords.length){
+      const sbWord = sbWords[wordIndex];
+
+      // calcualtion 
+      if(ogWord != sbWord){
+          // console.log(`${ogWord} != ${sbWord} ${totalPoints} -1`);
+          totalPoints = totalPoints -1;
+      }
+
+    }else{
+      // console.log(`${wordIndex} bigger than ${ogWords.length}`);
+    }
+  }
+
+  console.log("Total Points:", totalPoints);
+  console.log("startingPoints:", startingPoints);
+  console.log("Accuracy:", (totalPoints/startingPoints*100).toFixed());
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+  </body>
+  </html>
+
