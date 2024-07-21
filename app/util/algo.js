@@ -4,7 +4,7 @@
 // const distortedPara = getDistortedPara(originalPara);
 // console.log("Distorted: ", distortedPara);
 
-// const submission = 'The biggest risk is not takingany risk… In a world t hat’s changing really quickly, the only strategy that is gu ar anteed to failisn ott akingr isk s.'
+
 
 export function getDistortedPara(originalPara) {
     const totalSpaces = originalPara.split(" ").length - 1;
@@ -19,28 +19,42 @@ export function getDistortedPara(originalPara) {
     return distortedPara;
 }
 
+
+
+
 export function getSubmitResult(originalPara, submission) {
+    console.log("Submission: ",submission);
     const ogWords = originalPara.split(' ');
     const totalScore = ogWords.length;
-    var score = totalScore
-    // console.log("ogWords: ",ogWords);
+    var score = 0;
+    console.log("ogWords: ",ogWords);
     const sbWords = submission.split(' ');
-    // console.log("sbWords: ",sbWords);
+    console.log("sbWords: ",sbWords);
     if (ogWords.length != sbWords.length) {
         // console.log("Point -1");
-        score = score - 1;
+        score -= 1;
     }
+
     for (let wordIndex = 0; wordIndex < ogWords.length; wordIndex++) {
         const ogWord = ogWords[wordIndex];
         if (wordIndex < sbWords.length) {
             const sbWord = sbWords[wordIndex];
 
             // calcualtion 
-            if (ogWord != sbWord) {
-                score = score - 1;
+            if (ogWord == sbWord) {
+                
+                score =score + 1;
+                
+                console.log(`# ${ogWord} == ${sbWord} ${score} +1`);
+            }else{
+                console.log(`# ${ogWord} != ${sbWord} ${score} -1`);
             }
+
+        } else {
+            // console.log(`${wordIndex} bigger than ${ogWords.length}`);
         }
     }
+    console.log("Score: ",score);
     const accuracy = (score / totalScore * 100).toFixed();
     
     const result = {
@@ -48,10 +62,13 @@ export function getSubmitResult(originalPara, submission) {
         total:totalScore,
         accuracy: accuracy
     }
-    // console.log("Score:", score);
-    // console.log("Total Score:", totalScore);
-    // console.log("Accuracy:", accuracy);
+
+    console.log("Score:", score);
+    console.log("Total Score:", totalScore);
+    console.log("Accuracy:", accuracy);
+
     return result;
+
 }
 
 function getRandomInt(bound) {

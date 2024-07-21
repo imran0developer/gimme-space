@@ -82,9 +82,11 @@ export default function Home() {
     setIsSubmitted(true);
     const textDiv: any = textRef.current;
     if (textDiv) {
+      textDiv.focus();
       const submisionText = textDiv.innerText;
+      console.log("SubmisionText", submisionText);
       setSubmission(submisionText);
-      const submissionResult = getSubmitResult(originalPara, submission);
+      const submissionResult = getSubmitResult(originalPara, submisionText);
       setResult({
         score: submissionResult.score,
         total: submissionResult.total,
@@ -167,8 +169,10 @@ export default function Home() {
         {!isSubmitted && (
           <div
             contentEditable
+            // value={text}
             ref={textRef}
-            className="mt-24 text-3xl p-4 text-[#344955] dark:text-white bg-transparent"
+            autoFocus={true} 
+            className="mt-24 text-3xl p-4 text-[#344955] dark:text-white bg-transparent "
             onKeyDown={handleKeyDown}
             onChange={handleChange}
           >
